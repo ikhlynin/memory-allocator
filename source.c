@@ -5,8 +5,8 @@
 #include<stdint.h>
 #include<assert.h>
 
-#define STACK_SIZE 64				//virtual stack size
-#define HEAP_SIZE 256				//virtual heap size (Stack * 4)
+#define STACK_SIZE 32				//virtual stack size
+#define HEAP_SIZE 128				//virtual heap size (Stack * 4)
 #define HEADER 4					
 #define u8 uint8_t					
 #define u16 uint16_t
@@ -67,7 +67,7 @@ et* newEt(size_t size)
 	return ptr;
 }
 
-void* malloc(size_t size)
+void* cus_malloc(size_t size)
 {
 	assert(size <= HEAP_SIZE);
 	size += HEADER;
@@ -135,9 +135,9 @@ void call()
 
 	int* test2;
 
-	ts = malloc(sizeof(ts));
-	test1 = malloc(5);
-	test2 = malloc(sizeof(int));
+	ts = cus_malloc(sizeof(ts));
+	test1 = cus_malloc(5);
+	test2 = cus_malloc(sizeof(int));
 
 	ts->a = 10;
 	ts->b = 20;
@@ -151,7 +151,7 @@ void call()
 	free(ts);
 	free(test1);
 
-	char* newTest = malloc(100 /*set 260 to overflow*/);									
+	char* newTest = cus_malloc(100 /*set 260 to overflow*/);									
 	printf("Address: (%p), data: [%s]\n", newTest, newTest);
 }
 
