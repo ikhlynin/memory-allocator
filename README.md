@@ -1,2 +1,2 @@
 # memory-allocator
-Memory allocator writen in C
+My attempt to implement a memory allocator in C
